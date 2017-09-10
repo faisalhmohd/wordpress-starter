@@ -1,0 +1,21 @@
+version: '3'
+services:
+  wordpress:
+    image: wordpress:php7.1-apache
+    container_name: wp_theme4_server
+    links:
+      - wordpress_db:mysql
+    volumes:
+      - ./theme-four:/var/www/html/wp-content/themes/theme-four/:rw
+    ports:
+      - 3000:80
+    environment:
+      WORDPRESS_DB_PASSWORD: faisal
+  wordpress_db:
+    image: mariadb:5.5.54
+    container_name: wp_theme4_db_sql
+    environment:
+      MYSQL_ROOT_PASSWORD: faisal
+      MYSQL_USER: faisal
+      MYSQL_PASSWORD: faisal
+      MYSQL_DATABASE: wp_theme4
